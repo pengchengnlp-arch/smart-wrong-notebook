@@ -1,0 +1,28 @@
+   name: Sync upstream                                                                                                                                          
+                                                                                                                                                                
+   on:                                                                                                                                                          
+     schedule:                                                                                                                                                  
+       - cron: "23 * * * *"   # 每小时第23分钟检查一次（可自行调整）                                                                                            
+     workflow_dispatch: {}      # 允许手动触发（用于首次测试）                                                                                                  
+                                                                                                                                                                
+   permissions:                                                                                                                                                 
+     contents: write            # 允许工作流推送提交到你的fork                                                                                                  
+                                                                                                                                                                
+   jobs:                                                                                                                                                        
+     sync:                                                                                                                                                      
+       runs-on: ubuntu-latest                                                                                                                                   
+       steps:                                                                                                                                                   
+         - name: Checkout                                                                                                                                       
+           uses: actions/checkout@v4                                                                                                                            
+           with:                                                                                                                                                
+             ref: main                                                                                                                                          
+             fetch-depth: 0     # 需要完整历史才能合并                                                                                                          
+                                                                                                                                                                
+         - name: Fast-forward merge from upstream                                                                                                               
+           run: |                                                                                                                                               
+             git config user.name "github-actions[bot]"                                                                                                         
+             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"                                                                      
+             git remote add upstream https://github.com/margrop/wrong-notebook.git                                                                              
+             git fetch upstream main                                                                                                                            
+             git merge --ff-only upstream/main || { echo "fork的main有独立提交，无法快进��需人工处理"; exit 1; }                                                
+             git push origin main
