@@ -8,7 +8,7 @@
 
 [![GitHub downloads](https://img.shields.io/github/downloads/margrop/wrong-notebook/total?label=downloads&logo=github)](https://github.com/margrop/wrong-notebook/releases) [![npm downloads](https://img.shields.io/npm/d18m/wrong-notebook?label=npm%20downloads&logo=npm)](https://www.npmjs.com/package/wrong-notebook) [![GitHub stars](https://img.shields.io/github/stars/margrop/wrong-notebook?logo=github)](https://github.com/margrop/wrong-notebook/stargazers) [![GitHub forks](https://img.shields.io/github/forks/margrop/wrong-notebook?logo=github)](https://github.com/margrop/wrong-notebook/forks)
 
-[![桌面版](https://img.shields.io/badge/%E6%A1%8C%E9%9D%A2%E7%89%88-Windows%20%7C%20macOS%20%7C%20Linux-informational)](https://github.com/margrop/wrong-notebook/releases) [![Android](https://img.shields.io/badge/Android-34A853?logo=android&logoColor=white)](https://github.com/margrop/wrong-notebook/releases) [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://github.com/margrop/wrong-notebook/pkgs/container/wrong-notebook) [![npm](https://img.shields.io/badge/npm-CB3837?logo=npm&logoColor=white)](https://www.npmjs.com/package/wrong-notebook) [![飞牛OS](https://img.shields.io/badge/%E9%A3%9E%E7%89%9BOS-fpk-0A84FF)](https://github.com/margrop/wrong-notebook/releases) [![Web](https://img.shields.io/badge/Web-PC%20%7C%20Mobile-orange)](https://wrong-notebook-demo.margrop.net)
+[![桌面版](https://img.shields.io/badge/%E6%A1%8C%E9%9D%A2%E7%89%88-Windows%20%7C%20macOS%20%7C%20Linux-informational)](https://github.com/margrop/wrong-notebook/releases) [![Android](https://img.shields.io/badge/Android-34A853?logo=android&logoColor=white)](https://github.com/margrop/wrong-notebook/releases) [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://github.com/margrop/wrong-notebook/pkgs/container/wrong-notebook) [![npm](https://img.shields.io/badge/npm-CB3837?logo=npm&logoColor=white)](https://www.npmjs.com/package/wrong-notebook) [![飞牛OS](https://img.shields.io/badge/%E9%A3%9E%E7%89%9BOS-fpk-0A84FF)](https://github.com/margrop/wrong-notebook/releases) [![群晖](https://img.shields.io/badge/%E7%BE%A4%E6%99%96-spk-B5B5B6?logo=synology&logoColor=white)](https://github.com/margrop/wrong-notebook/releases) [![威联通](https://img.shields.io/badge/%E5%A8%81%E8%81%94%E9%80%9A-qpkg-1E73BE?logo=qnap&logoColor=white)](https://github.com/margrop/wrong-notebook/releases) [![Web](https://img.shields.io/badge/Web-PC%20%7C%20Mobile-orange)](https://wrong-notebook-demo.margrop.net)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Release](https://img.shields.io/github/v/release/margrop/wrong-notebook?include_prereleases)](https://github.com/margrop/wrong-notebook/releases) [![CI](https://github.com/margrop/wrong-notebook/actions/workflows/ci.yml/badge.svg)](https://github.com/margrop/wrong-notebook/actions/workflows/ci.yml) [![CodeQL](https://github.com/margrop/wrong-notebook/actions/workflows/codeql.yml/badge.svg)](https://github.com/margrop/wrong-notebook/actions/workflows/codeql.yml) [![npm](https://img.shields.io/npm/v/wrong-notebook)](https://www.npmjs.com/package/wrong-notebook)
 
@@ -149,13 +149,13 @@
 - **📮 识别任务**：拍照或框选的题目上传后由服务器识别，任务和结果保存在数据库中，不依赖原页面连接。上传完成即可离开页面、锁屏或继续使用应用；页头「识别任务」入口显示识别中数量和未读结果，回到前台立即刷新，可继续校对、查看错题或重试失败任务。默认开启「导入前人工确认」时结果保存为待校对草稿，关闭时服务器识别后直接入库（判重、年级和卷别规则与手动保存一致），重复提交或重复确认不会重复入库。服务重启后已完成的结果仍可打开，处理中被中断的任务显示为失败并可重试；待校对和失败的任务会一直保留到处理，已保存的任务保留 7 天。
 - **🎓 录入年级规则**：在「设置 → 通用」按账户选择固定年级或 AI 识别。固定模式使用指定年级学期，未指定时沿用账户当前年级；AI 模式根据题目内容判断，无法确定时保持未设置。图片、文字、框选批量与 Openclaw 录入统一生效，手工选择优先。直接录入未填年级时会补充一次 AI 识别并计入每日用量，重复题不重复识别；已有题目和备份恢复的年级不受影响。
 - **🔁 重复题判定**：导入时比较题干相似度，超过阈值（默认 90%，可在设置中调整）的题目不会重复导入，而是在原题下记一次做错。
-- **🆔 题目 ID**：每道题有 6 位 ID，可复制，也可在错题本中输入 ID 直接打开该题；打印的错题和试卷都标有「来源 ID」，方便做完后定位原题录入结果。
+- **🆔 题目编号**：每道题同时有 6 位 ID 和流水号（每个用户从 #1000 起依次编号，升级时自动为已有题目补齐）。管理员可在「设置 → 通用 → 题目编号显示方式」中切换显示哪一种，默认显示 6 位 ID；两种编号都可复制、搜索，或在错题本中输入后直接打开该题。打印的错题和试卷都标有来源编号，方便做完后定位原题录入结果。
 
 ### 题目内容
 
 - **∑ LaTeX 公式**：题目、答案和解析中的公式用 KaTeX 显示，支持 `$…$`、`$$…$$`、`\(…\)`、`\[…\]`；编辑时可在「源代码 / 预览」之间切换。检测到公式语法错误时，详情页出现「修复 LaTeX」按钮，由 AI 只修复公式写法。
 - **📝 重新生成解答**：详情页「重新生成完整解答」由 AI 重新生成答案和解析（覆盖前二次确认），知识点和错因保持不变。
-- **🖼️ 题目配图**：识别时由 AI 用 SVG 重绘题目配图，详情页、打印和试卷都使用 SVG 配图；有配图的错题可在详情页设置「配图显示比例」（10%～200%，默认 100%）与「配图显示位置」（居左/居中/居右，默认居中），含配图的试卷也支持按题逐个调整或全卷统一调整配图比例与显示位置，保存后同步用于显示和打印，并随备份恢复。拍照原图可在「查看原题图片」中核对，也可替换或补充上传。重绘配图时先打开原图框选配图区域，只把该区域交给 AI，避免整张照片中的小配图因分辨率不足而失真；也可旋转后再框选。
+- **🖼️ 题目配图**：识别时 AI 先定位配图，再把配图区域裁剪出来单独用 SVG 重绘（先逐项列出线段、箭头和标注再作图，生成后校验 SVG 是否合法），详情页、打印和试卷都使用 SVG 配图；有配图的错题可在详情页设置「配图显示比例」（10%～200%，默认 100%）与「配图显示位置」（居左/居中/居右，默认居中），含配图的试卷也支持按题逐个调整或全卷统一调整配图比例与显示位置，保存后同步用于显示和打印，并随备份恢复。拍照原图可在「查看原题图片」中核对，也可替换或补充上传。重绘配图时先打开原图框选配图区域，只把该区域交给 AI，避免整张照片中的小配图因分辨率不足而失真；也可旋转后再框选。
 - **⭐ 难度星级**：导入时由 AI 参考《高思学校竞赛数学导引》的星级标准评定 1~5 星（一二星为课本及校内拔高，三四星为常规奥数，五星为竞赛压轴），可手动修改；4 星及以上默认归入 B 卷。
 - **🏷️ 知识点标签**：错题本创建时选择学段（小学/初中/高中/大学）和学科（创建后不可修改），小学支持数学、英语、语文和科学；内置语文章节与知识点覆盖小学一年级至六年级及初高中，科学知识点来自导入的人教版课标体系，未导入时由 AI 自行命名。本错题本内的题目由 AI 从该学段、该学科的全部知识点中选择标签；大学没有内置课程知识点，由 AI 自行命名并保存为该错题本的标签，再次识别优先复用已有标签。支持自定义标签，单题或整本错题本可让 AI 重新识别知识点和难度。管理员可在「设置 → 用户管理 → 人教版课标知识点」上传 [cn-math-taxonomy](https://github.com/xiaoyang111222/cn-math-taxonomy) 的 [topics.json](https://raw.githubusercontent.com/xiaoyang111222/cn-math-taxonomy/HEAD/data/topics.json)，导入「人教版课标体系」（以数学为主，也包含语文、英语、科学、物理、化学、生物、历史、地理、道德与法治，约 3300 个知识点）；导入后创建错题本时可选择标签体系，与内置体系并存，创建后不可更改。
 
@@ -476,6 +476,7 @@ GeoGebra 的文字、不等式和标签参数按共用命令清单校验，重�
 | `ALLOW_REGISTRATION` | 是否开放注册，默认 `false` |
 | `AI_DAILY_LIMIT` | 普通用户每天的 AI 次数，默认 `0`（不限制） |
 | `AI_CONCURRENCY_LIMIT` | 同一模型同时进行的 AI 调用上限，默认 `5`，超出的排队 |
+| `FIGURE_REVIEW` | AI 配图比对校正开关，默认 `false`；重绘后多一次 AI 调用 |
 
 <details>
 <summary><strong>完整环境变量列表</strong></summary>
@@ -495,6 +496,7 @@ GeoGebra 的文字、不等式和标签参数按共用命令清单校验，重�
 | `ALLOW_REGISTRATION` | 允许注册 | `false` | 为 `true` 时默认开放注册；管理员在「设置 → 用户管理」中保存的开关优先 |
 | `AI_DAILY_LIMIT` | 每人每日 AI 次数 | `0`（不限制） | 普通用户每天可发起的 AI 操作次数，管理员不受限制；「设置 → 用户管理」中保存的值优先 |
 | `AI_CONCURRENCY_LIMIT` | 同一模型 AI 并发上限 | `5` | 同一渠道、地址和模型同时进行的 AI 调用数量（1～100），超出的调用排队等待，避免服务商返回 429；「设置 → 用户管理」中保存的值优先 |
+| `FIGURE_REVIEW` | AI 配图比对校正 | `false` | 为 `true` 时重绘配图后把原图与结果并排交给 AI 比对并修正差异；每张配图多一次带图片的 AI 调用，耗时更长。管理员在「设置 → 通用」中保存的开关优先 |
 | `TTS_MODE` | 动画语音讲解的朗读方式 | `browser` | `browser` 为浏览器本地语音；`minimax`、`qwen`、`glm`、`stepfun`、`volcengine`、`volcengine-agent`、`openai` 为云端语音，复用对应渠道的 API Key（豆包语音使用 `VOLCENGINE_TTS_API_KEY`，OpenAI 使用当前激活的 OpenAI 配置）。「设置 → AI 设置 → 语音讲解」中保存的值优先 |
 
 **AI 配置**（网页中保存的配置优先于环境变量）
@@ -558,7 +560,7 @@ GeoGebra 的文字、不等式和标签参数按共用命令清单校验，重�
 可将应用添加到手机或平板主屏幕，全屏运行、点击图标直接打开，平板可横屏使用。
 
 - **iPhone / iPad (Safari)**：点击底部 **分享** 按钮 → 选择 **"添加到主屏幕"**。
-- **Android (Chrome)**：点击右上角 **菜单** → 选择 **"添加到主屏幕"** 或 **"安装应用"**；也可以安装[安卓 App](#方式一安装包windows--macos--linux--飞牛os--安卓--npm)。
+- **Android (Chrome)**：点击右上角 **菜单** → 选择 **"添加到主屏幕"** 或 **"安装应用"**；也可以安装[安卓 App](#方式一安装包windows--macos--linux--飞牛os--群晖--威联通--安卓--npm)。
 
 通过 HTTPS（或 `localhost`）访问时会启用 Service Worker：缓存页面脚本、样式和图标以加快打开速度，断网时显示离线提示页。题目、统计等数据始终从服务器读取，不做离线缓存。
 
